@@ -6,8 +6,7 @@ using namespace std;
 
 HANDLE hpro;
 
-void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...)
-{
+void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
     if (!hpro)
         return;
     if (size > 4)

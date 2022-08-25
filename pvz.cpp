@@ -49,7 +49,31 @@ void mainLoop() {
 			cout << "What would you like this value to be? ";
 			int newdata;
 			cin >> newdata;
-			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x28);
+			WriteMemory(newdata/10, 4, 0x6a9ec0, 2, 0x82c, 0x28);
+		}
+		else if(input == "fertilizer") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(1000 + newdata, 4, 0x6a9ec0, 2, 0x82c, 0x1f8);
+		}
+		else if(input == "bugspray") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(1000 + newdata, 4, 0x6a9ec0, 2, 0x82c, 0x1fc);
+		}
+		else if(input == "chocolate") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(1000 + newdata, 4, 0x6a9ec0, 2, 0x82c, 0x228);
+		}
+		else if(input == "treefood") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(1000 + newdata, 4, 0x6a9ec0, 2, 0x82c, 0x230);
 		}
 	}
 }

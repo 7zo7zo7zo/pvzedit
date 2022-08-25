@@ -11,27 +11,22 @@ void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
         return;
     if (size > 4)
         size = 4;
-    if (argnum == 0)
-    {
+    if (argnum == 0) {
         WriteProcessMemory(hpro, LPVOID(base), &val, size, 0);
     }
-    else
-    {
+    else {
         DWORD temp;
         ReadProcessMemory(hpro, LPCVOID(base), &temp, 4, 0);
         va_list args;
         va_start(args, argnum);
-        for (int i = 1; i < argnum; ++i)
-        {
+        for (int i = 1; i < argnum; ++i) {
             ReadProcessMemory(hpro, LPCVOID(temp + va_arg(args, int)), &temp, 4, 0);
         }
-        if(WriteProcessMemory(hpro, LPVOID(temp + va_arg(args, int)), &val, size, 0))
-        {
+        if(WriteProcessMemory(hpro, LPVOID(temp + va_arg(args, int)), &val, size, 0)) {
 			//MessageBox(NULL, "WriteProcessMemory worked.", "Success", MB_OK + MB_ICONINFORMATION);
 			cout << "Success!" << endl;
 		}
-		else
-		{
+		else {
 			MessageBox(NULL, "Error cannot WriteProcessMemory!", "Error", MB_OK + MB_ICONERROR);
 		}
         va_end(args);
@@ -61,21 +56,17 @@ void mainLoop() {
 
 int main() {
 	HWND hWnd = FindWindow(0, "Plants Vs. Zombies");
-  	if(hWnd == 0)
-	{
-    	MessageBox(0, "Error cannot find window.", "Error", MB_OK|MB_ICONERROR);
+  	if(hWnd == 0) {
+    		MessageBox(0, "Error cannot find window.", "Error", MB_OK|MB_ICONERROR);
   	}
-	else
-	{
-    	DWORD proccess_ID;
-    	GetWindowThreadProcessId(hWnd, &proccess_ID);
-    	hpro = OpenProcess(PROCESS_ALL_ACCESS, FALSE, proccess_ID);
-    	if(!hpro)
-		{
-      		MessageBox(0, "Could not open the process!", "Error!", MB_OK|MB_ICONERROR);
-    	}
-		else
-		{
+	else {
+    		DWORD proccess_ID;
+    		GetWindowThreadProcessId(hWnd, &proccess_ID);
+    		hpro = OpenProcess(PROCESS_ALL_ACCESS, FALSE, proccess_ID);
+    		if(!hpro) {
+      			MessageBox(0, "Could not open the process!", "Error!", MB_OK|MB_ICONERROR);
+    		}
+		else {
 			mainLoop();
 		}
 		CloseHandle(hpro);

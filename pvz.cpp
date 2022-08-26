@@ -75,6 +75,11 @@ void mainLoop() {
 			cin >> newdata;
 			WriteMemory(1000 + newdata, 4, 0x6a9ec0, 2, 0x82c, 0x230);
 		}
+		else if(input == "pause") {
+			WriteMemory(1, 4, 0x6a9ec0, 2, 0x768, 0x164);
+			system("pause");
+			WriteMemory(0, 4, 0x6a9ec0, 2, 0x768, 0x164);
+		}
 	}
 }
 

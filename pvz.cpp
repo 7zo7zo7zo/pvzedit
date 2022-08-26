@@ -93,7 +93,7 @@ void mainLoop() {
 			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x24);
 		}
 		else if(input == "seedslots" || input == "slots") {
-			cout << "What would you like this value to be? (anything greater than 10 will crash)";
+			cout << "What would you like this value to be? (anything greater than 10 will crash) ";
 			int newdata;
 			cin >> newdata;
 			WriteMemory(newdata, 4, 0x6a9ec0, 3, 0x768, 0x144, 0x24);

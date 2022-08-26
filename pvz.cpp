@@ -12,7 +12,13 @@ void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
     if (size > 4)
         size = 4;
     if (argnum == 0) {
-        WriteProcessMemory(hpro, LPVOID(base), &val, size, 0);
+        if(WriteProcessMemory(hpro, LPVOID(base), &val, size, 0)) {
+	    	//MessageBox(NULL, "WriteProcessMemory worked.", "Success", MB_OK + MB_ICONINFORMATION);
+		cout << "Success!" << endl;
+	}
+	else {
+		MessageBox(NULL, "Error cannot WriteProcessMemory!", "Error", MB_OK + MB_ICONERROR);
+	}
     }
     else {
         DWORD temp;
@@ -23,20 +29,20 @@ void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
             ReadProcessMemory(hpro, LPCVOID(temp + va_arg(args, int)), &temp, 4, 0);
         }
         if(WriteProcessMemory(hpro, LPVOID(temp + va_arg(args, int)), &val, size, 0)) {
-			//MessageBox(NULL, "WriteProcessMemory worked.", "Success", MB_OK + MB_ICONINFORMATION);
-			cout << "Success!" << endl;
-		}
-		else {
-			MessageBox(NULL, "Error cannot WriteProcessMemory!", "Error", MB_OK + MB_ICONERROR);
-		}
+		//MessageBox(NULL, "WriteProcessMemory worked.", "Success", MB_OK + MB_ICONINFORMATION);
+		cout << "Success!" << endl;
+	}
+	else {
+		MessageBox(NULL, "Error cannot WriteProcessMemory!", "Error", MB_OK + MB_ICONERROR);
+	}
         va_end(args);
     }
 }
 
 void mainLoop() {
 	for(int i = 0; i < 5; i++) {
-    	cout << "What would you like to modify? ";
-    	string input;
+    		cout << "What would you like to modify? ";
+    		string input;
 		cin >> input;
 		
 		if(input == "sun") {
@@ -85,6 +91,22 @@ void mainLoop() {
 			int newdata;
 			cin >> newdata;
 			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x24);
+		}
+		else if(input == "seedslots" || input == "slots") {
+			cout << "What would you like this value to be? (anything greater than 10 will crash)";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(newdata, 4, 0x6a9ec0, 3, 0x768, 0x144, 0x24);
+		}
+		else if(input == "limbo") {
+			WriteMemory(144, 1, 0x42DF5D, 0);
+			WriteMemory(144, 1, 0x42DF5E, 0);
+			WriteMemory(144, 1, 0x42DF5F, 0);
+		}
+		else if(input == "nolimbo") {
+			WriteMemory(136, 1, 0x42DF5D, 0);
+			WriteMemory(89, 1, 0x42DF5E, 0);
+			WriteMemory(84, 1, 0x42DF5F, 0);
 		}
 	}
 }

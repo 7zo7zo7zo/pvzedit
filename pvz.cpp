@@ -80,6 +80,12 @@ void mainLoop() {
 			system("pause");
 			WriteMemory(0, 4, 0x6a9ec0, 2, 0x768, 0x164);
 		}
+		else if(input == "adventure") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x24);
+		}
 	}
 }
 

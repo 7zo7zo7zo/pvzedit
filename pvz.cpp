@@ -15,10 +15,10 @@ void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
         if(WriteProcessMemory(hpro, LPVOID(base), &val, size, 0)) {
 	    	//MessageBox(NULL, "WriteProcessMemory worked.", "Success", MB_OK + MB_ICONINFORMATION);
 		cout << "Success!" << endl;
-	}
-	else {
-		MessageBox(NULL, "Error cannot WriteProcessMemory!", "Error", MB_OK + MB_ICONERROR);
-	}
+		}
+		else {
+			MessageBox(NULL, "Error cannot WriteProcessMemory!", "Error", MB_OK + MB_ICONERROR);
+		}
     }
     else {
         DWORD temp;
@@ -31,11 +31,11 @@ void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
         if(WriteProcessMemory(hpro, LPVOID(temp + va_arg(args, int)), &val, size, 0)) {
 		//MessageBox(NULL, "WriteProcessMemory worked.", "Success", MB_OK + MB_ICONINFORMATION);
 		cout << "Success!" << endl;
-	}
-	else {
-		MessageBox(NULL, "Error cannot WriteProcessMemory!", "Error", MB_OK + MB_ICONERROR);
-	}
-        va_end(args);
+		}
+		else {
+			MessageBox(NULL, "Error cannot WriteProcessMemory!", "Error", MB_OK + MB_ICONERROR);
+		}
+    	va_end(args);
     }
 }
 

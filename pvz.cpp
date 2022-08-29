@@ -41,11 +41,11 @@ void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
 
 void mainLoop() {
 	for(int i = 0; i < 10; i++) {
-			cout << "What would you like to modify? ";
-			string input;
+		cout << "What would you like to modify? ";
+		string input;
 		cin >> input;
 		
-		if(input == "exit") {
+		if(input == "exit" || input == "quit" || input == "q") {
 			break;
 		}
 		if(input == "sun") {
@@ -102,14 +102,14 @@ void mainLoop() {
 			WriteMemory(newdata, 4, 0x6a9ec0, 3, 0x768, 0x144, 0x24);
 		}
 		else if(input == "limbo") {
-			WriteMemory(144, 1, 0x42DF5D, 0);
-			WriteMemory(144, 1, 0x42DF5E, 0);
-			WriteMemory(144, 1, 0x42DF5F, 0);
+			WriteMemory(144, 1, 0x42df5d, 0);
+			WriteMemory(144, 1, 0x42df5e, 0);
+			WriteMemory(144, 1, 0x42df5f, 0);
 		}
 		else if(input == "nolimbo") {
-			WriteMemory(136, 1, 0x42DF5D, 0);
-			WriteMemory(89, 1, 0x42DF5E, 0);
-			WriteMemory(84, 1, 0x42DF5F, 0);
+			WriteMemory(136, 1, 0x42df5d, 0);
+			WriteMemory(89, 1, 0x42df5e, 0);
+			WriteMemory(84, 1, 0x42df5f, 0);
 		}
 		else if(input == "tree" || input == "treeheight") {
 			cout << "What would you like this value to be? ";
@@ -130,7 +130,25 @@ void mainLoop() {
 			cout << "What would you like this value to be? ";
 			int newdata;
 			cin >> newdata;
-			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x2C);
+			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x2c);
+		}
+		else if(input == "namelength" || input == "usernamelength") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x14);
+		}
+		else if(input == "vasebreaker" || input == "vasebreakerrecord") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x11c);
+		}
+		else if(input == "izombie" || input == "izombierecord") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x144);
 		}
 	}
 }

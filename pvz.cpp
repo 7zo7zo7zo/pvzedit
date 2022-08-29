@@ -123,6 +123,15 @@ void mainLoop() {
 			cin >> newdata;
 			WriteMemory(100/newdata, 4, 0x522FE0, 0);
 		}
+		else if(input == "end" || input == "endlevel") {
+			WriteMemory(1, 4, 0x6a9ec0, 2, 0x768, 0x5604);
+		}
+		else if(input == "times" || input == "timesbeaten" || input == "adventuretimesbeaten") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x2C);
+		}
 	}
 }
 

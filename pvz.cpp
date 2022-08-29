@@ -40,11 +40,14 @@ void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
 }
 
 void mainLoop() {
-	for(int i = 0; i < 5; i++) {
+	for(int i = 0; i < 10; i++) {
     		cout << "What would you like to modify? ";
     		string input;
 		cin >> input;
 		
+		if(input == "exit") {
+			break;
+		}
 		if(input == "sun") {
 			cout << "What would you like this value to be? ";
 			int newdata;
@@ -92,8 +95,8 @@ void mainLoop() {
 			cin >> newdata;
 			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x24);
 		}
-		else if(input == "seedslots" || input == "slots") {
-			cout << "What would you like this value to be? (anything greater than 10 will crash) ";
+		else if(input == "slots" || input == "seedslots") {
+			cout << "What would you like this value to be? (anything greater than 10 will crash)";
 			int newdata;
 			cin >> newdata;
 			WriteMemory(newdata, 4, 0x6a9ec0, 3, 0x768, 0x144, 0x24);
@@ -107,6 +110,18 @@ void mainLoop() {
 			WriteMemory(136, 1, 0x42DF5D, 0);
 			WriteMemory(89, 1, 0x42DF5E, 0);
 			WriteMemory(84, 1, 0x42DF5F, 0);
+		}
+		else if(input == "tree" || input == "treeheight") {
+			cout << "What would you like this value to be? ";
+			int newdata;
+			cin >> newdata;
+			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0xf4);
+		}
+		else if(input == "jack" || input == "jackperc" || input == "jackpercent") {
+			cout << "What would you like this value to be? (don't use 0) ";
+			float newdata;
+			cin >> newdata;
+			WriteMemory(100/newdata, 4, 0x522FE0, 0);
 		}
 	}
 }

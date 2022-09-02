@@ -150,6 +150,18 @@ void mainLoop() {
 			cin >> newdata;
 			WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0x144);
 		}
+		else if(input == "butter" || input == "butterperc" || input == "butterpercent") {
+			cout << "What would you like this value to be? (don't use 0) ";
+			float newdata;
+			cin >> newdata;
+			WriteMemory(100/newdata, 4, 0x45F1E1, 0);
+		}
+		else if(input == "wallnutperc" || input == "wallnutpercent" || input == "wallnutdownperc" || input == "wallnutdownpercent") {
+			cout << "What would you like this value to be? (don't use 0) ";
+			float newdata;
+			cin >> newdata;
+			WriteMemory(100/newdata, 4, 0x4630F0, 0);
+		}
 	}
 }
 

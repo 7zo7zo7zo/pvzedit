@@ -6,11 +6,26 @@ using namespace std;
 
 HANDLE hpro;
 
+bool running;
+
+BOOL WINAPI consoleHandler(DWORD signal) {
+	switch(signal) {
+		case CTRL_C_EVENT:
+  		running = false;
+			cout << endl << "Exiting..." << endl;
+			CloseHandle(hpro);
+			exit(0);
+  	  return true;
+	  default:
+	    return false;
+	}
+}
+
 void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
 	if (!hpro)
-	    return;
+		return;
 	if (size > 4)
-	    size = 4;
+		size = 4;
 	if (argnum == 0) {
 		if(WriteProcessMemory(hpro, LPVOID(base), &val, size, 0)) {
 			//MessageBox(NULL, "WriteProcessMemory worked.", "Success", MB_OK + MB_ICONINFORMATION);
@@ -36,11 +51,11 @@ void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
 			MessageBox(NULL, "Error cannot WriteProcessMemory!", "Error", MB_OK + MB_ICONERROR);
 		}
 		va_end(args);
-    }
+  }
 }
 
 void mainLoop() {
-	for(int i = 0; i < 10; i++) {
+	while(running) {
 		cout << "What would you like to modify? ";
 		string input;
 		cin >> input;
@@ -166,6 +181,10 @@ void mainLoop() {
 }
 
 int main() {
+	if (!SetConsoleCtrlHandler(consoleHandler, TRUE)) {
+		printf("\nERROR: Could not set control handler"); 
+		return 1;
+	}
 	HWND hWnd = FindWindow(0, "Plants Vs. Zombies");
 	if(hWnd == 0) {
 		MessageBox(0, "Error cannot find window.", "Error", MB_OK|MB_ICONERROR);
@@ -178,6 +197,7 @@ int main() {
 	  			MessageBox(0, "Could not open the process!", "Error!", MB_OK|MB_ICONERROR);
 			}
 		else {
+			running = true;
 			mainLoop();
 		}
 		CloseHandle(hpro);

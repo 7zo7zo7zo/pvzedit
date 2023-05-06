@@ -56,7 +56,11 @@ void WriteMemory(DWORD val, DWORD size, DWORD base, int argnum, ...) {
 
 void mainLoop() {
 	while(running) {
+#ifdef __unix__
 		system("clear");
+#else
+		system("cls");
+#endif
 		cout << "1. sun" << endl;
 		cout << "2. money" << endl;
 		cout << "3. fertilizer" << endl;
@@ -91,7 +95,6 @@ void mainLoop() {
 			case 0:
 				running = false;
 				cout << "Exiting..." << endl;
-				exit(0);
 				break;
 			case 1:
 				cout << "Enter the amount of sun you wish to have: ";

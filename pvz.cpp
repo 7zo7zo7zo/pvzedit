@@ -162,7 +162,7 @@ void mainLoop() {
 			case 13:
 				cout << "Enter the desired early jack percentage (don't use 0) ";
 				cin >> newdataf;
-				WriteMemory(100/newdata, 4, 0x522FE0, 0);
+				WriteMemory(100/newdataf, 4, 0x522FE0, 0);
 				break;
 			case 14:
 				cout << "Current level ended.";
@@ -191,12 +191,12 @@ void mainLoop() {
 			case 19:
 				cout << "Enter the desired kernel-pult butter percentage (don't use 0) ";
 				cin >> newdataf;
-				WriteMemory(100/newdata, 4, 0x45F1E1, 0);
+				WriteMemory(100/newdataf, 4, 0x45F1E1, 0);
 				break;
 			case 20:
 				cout << "Enter the desired wall-nut rolling downward chance: (don't use 0) ";
 				cin >> newdataf;
-				WriteMemory(100/newdata, 4, 0x4630F0, 0);
+				WriteMemory(100/newdataf, 4, 0x4630F0, 0);
 				break;
 		}
 	}

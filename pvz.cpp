@@ -96,7 +96,7 @@ void mainLoop() {
 				cout << "Exiting..." << endl;
 				break;
 			case 1:
-				cout << "Enter the amount of sun you wish to have: ";
+				cout << "Enter the amount of sun you wish to have: (current: )";
 				cin >> newdata;
 				WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x768, 0x5560);
 				break;
@@ -144,9 +144,9 @@ void mainLoop() {
 				break;
 			case 10:
 				cout << "Limbo Page enabled.";
-				WriteMemory(144, 1, 0x42df5d, 0);
-				WriteMemory(144, 1, 0x42df5e, 0);
-				WriteMemory(144, 1, 0x42df5f, 0);
+				WriteMemory(144, 2, 0x42df5d, 0);
+				WriteMemory(144, 2, 0x42df5e, 0);
+				WriteMemory(144, 2, 0x42df5f, 0);
 				break;
 			case 11:
 				cout << "Limbo Page disabled.";
@@ -160,7 +160,7 @@ void mainLoop() {
 				WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x82c, 0xf4);
 				break;
 			case 13:
-				cout << "Enter the desired early jack percentage (don't use 0) ";
+				cout << "Enter the desired early jack percentage: (don't use 0) ";
 				cin >> newdataf;
 				WriteMemory(100/newdataf, 4, 0x522FE0, 0);
 				break;
@@ -194,7 +194,7 @@ void mainLoop() {
 				WriteMemory(100/newdataf, 4, 0x45F1E1, 0);
 				break;
 			case 20:
-				cout << "Enter the desired wall-nut rolling downward chance: (don't use 0) ";
+				cout << "Enter the desired wall-nut rolling downward percentage: (don't use 0) ";
 				cin >> newdataf;
 				WriteMemory(100/newdataf, 4, 0x4630F0, 0);
 				break;

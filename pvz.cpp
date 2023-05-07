@@ -96,7 +96,7 @@ void mainLoop() {
 				cout << "Exiting..." << endl;
 				break;
 			case 1:
-				cout << "Enter the amount of sun you wish to have: (current: )";
+				cout << "Enter the amount of sun you wish to have: ";
 				cin >> newdata;
 				WriteMemory(newdata, 4, 0x6a9ec0, 2, 0x768, 0x5560);
 				break;
@@ -144,9 +144,9 @@ void mainLoop() {
 				break;
 			case 10:
 				cout << "Limbo Page enabled.";
-				WriteMemory(144, 2, 0x42df5d, 0);
-				WriteMemory(144, 2, 0x42df5e, 0);
-				WriteMemory(144, 2, 0x42df5f, 0);
+				WriteMemory(144, 1, 0x42df5d, 0);
+				WriteMemory(144, 1, 0x42df5e, 0);
+				WriteMemory(144, 1, 0x42df5f, 0);
 				break;
 			case 11:
 				cout << "Limbo Page disabled.";
